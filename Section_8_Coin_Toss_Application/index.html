@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Toss Application</title>
+</head>
+<body>
+    <p class="msg">Select either Head or Tails</p>
+    <button>Heads</button><button>Tails</button>
+    <script>
+        let score = [0, 0];
+        let coinface = ["Heads", "Tails"];
+        let msgBox = document.querySelector('.msg');
+        let buttons = document.querySelectorAll("button");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function (e) {
+                gameLogic(e);
+            });
+        }
+        function gameLogic(e) {
+            let userSelection = e.target.innerText;
+            let computerSelection = coinface[Math.floor(Math.random() * coinface.length)]; 
+            let output = '';
+            if (userSelection == computerSelection) {
+                msgBox.innerHTML = "computer Selected " + computerSelection +"<br>";
+                output += "Player wins<br>";
+                score[0]++;
+            } else {
+                msgBox.innerHTML = "computer Selected " + computerSelection +"<br>";
+                output += "Computer wins<br>";
+                score[1]++;
+            }
+            msgBox.innerHTML += output + "Player " + score[0] + " Computer " + score[1];
+        }
+    </script>
+</body>
+</html>

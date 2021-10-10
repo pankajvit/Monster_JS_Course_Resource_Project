@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section:5 - Tip Calculator</title>
+</head>
+<body>
+    <div class="finalPrice"></div>
+    <input type="number" name="tip"/>
+    <button class="btn">Tip</button>
+    <script>
+        let btn = document.querySelector('.btn');
+        btn.addEventListener('click',function(){
+            let totalBill = document.querySelector('input[type="number"]').value;
+            let tip = (totalBill*15)/100;
+            document.querySelector('.finalPrice').innerHTML = "<b>your tip on "+totalBill + " is " + tip +"</b>";
+        });
+    </script>
+</body>
+</html>

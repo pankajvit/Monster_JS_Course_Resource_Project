@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section-7 : Dynamically changing time welcoming message</title>
+    <style>
+    .box {
+        background-color: black;
+        color: white;
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div class="messageBox"></div>
+    <button>Message</button>
+    <script>
+        document.querySelector('button').addEventListener('click',function(){
+            let date = new Date(10,10,2021,16,03);
+            let time = date.getHours();
+            console.log(time);
+            let msg = '';
+            if(time < 12) {
+                msg ="good morning";
+            }
+            else if(time < 17){
+                msg = "gd afternoon";
+            }
+            else {
+                msg= "gd evening";
+            }
+            let messageBox = document.querySelector('.messageBox');
+            messageBox.innerHTML = msg;
+            messageBox.classList.add('box');
+        });
+        
+    </script>
+</body>
+</html>
