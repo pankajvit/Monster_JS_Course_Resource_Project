@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +12,12 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         .gameBoard {
             width: 500px;
             height: 400px;
         }
+
         .finalWinnerMsg {
             width: 100%;
             text-align: center;
@@ -23,20 +26,24 @@
             font-size: 30px;
             line-height: 40px;
         }
+
         .diceBoxArea {
             width: 100%;
             height: 40%;
             display: flex;
             justify-content: space-between;
         }
+
         .diceBox {
             width: 49%;
             height: 100%;
             border: 1px solid black;
         }
+
         .diceBox h2 {
             margin-left: 10px;
         }
+
         .dice {
             width: 130px;
             height: 120px;
@@ -46,11 +53,13 @@
             display: flex;
             justify-content: space-around;
         }
+
         .column {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
         }
+
         .rollButton {
             width: 100%;
             height: 10%;
@@ -59,6 +68,7 @@
             line-height: 40px;
             background-color: rgb(233, 220, 220);
         }
+
         .dicedots {
             width: 20px;
             height: 20px;
@@ -66,11 +76,13 @@
             border-radius: 50%;
             display: none;
         }
+
         .show {
             display: block;
         }
     </style>
 </head>
+
 <body>
     <div class="gameBoard">
         <div class="finalWinnerMsg">
@@ -134,110 +146,106 @@
             let player2Number = Math.floor(Math.random() * 6) + 1;
             console.log(player1Number);
             console.log(player2Number);
-            if(player1Number==1) {
-                for(let i=0;i<allDiceDots.length;i++) {
-                    if(allDiceDots[i].classList.contains('one')){
+            if (player1Number == 1) {
+                for (let i = 0; i < allDiceDots.length; i++) {
+                    if (allDiceDots[i].classList.contains('one')) {
                         allDiceDots[i].classList.add('show');
                     } else {
                         allDiceDots[i].classList.remove('show');
                     }
-                    
+
                 }
-            } else if(player1Number==2) {
-                for(let i=0;i<allDiceDots.length;i++) {
-                    if(allDiceDots[i].classList.contains('two')){
-                        allDiceDots[i].classList.add('show');
-                    } else {
-                        allDiceDots[i].classList.remove('show');
-                    }
-                }
-            } else if(player1Number==3) {
-                for(let i=0;i<allDiceDots.length;i++) {
-                    if(allDiceDots[i].classList.contains('three')){
+            } else if (player1Number == 2) {
+                for (let i = 0; i < allDiceDots.length; i++) {
+                    if (allDiceDots[i].classList.contains('two')) {
                         allDiceDots[i].classList.add('show');
                     } else {
                         allDiceDots[i].classList.remove('show');
                     }
                 }
-            } else if(player1Number==4){
-                for(let i=0;i<allDiceDots.length;i++) {
-                    if(allDiceDots[i].classList.contains('four')){
+            } else if (player1Number == 3) {
+                for (let i = 0; i < allDiceDots.length; i++) {
+                    if (allDiceDots[i].classList.contains('three')) {
                         allDiceDots[i].classList.add('show');
                     } else {
                         allDiceDots[i].classList.remove('show');
                     }
                 }
-            }else if(player1Number==5){
-                for(let i=0;i<allDiceDots.length;i++) {
-                    if(allDiceDots[i].classList.contains('five')){
+            } else if (player1Number == 4) {
+                for (let i = 0; i < allDiceDots.length; i++) {
+                    if (allDiceDots[i].classList.contains('four')) {
                         allDiceDots[i].classList.add('show');
                     } else {
                         allDiceDots[i].classList.remove('show');
                     }
                 }
-            }else {
-                for(let i=0;i<allDiceDots.length;i++) {
-                    if(allDiceDots[i].classList.contains('six')){
+            } else if (player1Number == 5) {
+                for (let i = 0; i < allDiceDots.length; i++) {
+                    if (allDiceDots[i].classList.contains('five')) {
+                        allDiceDots[i].classList.add('show');
+                    } else {
+                        allDiceDots[i].classList.remove('show');
+                    }
+                }
+            } else {
+                for (let i = 0; i < allDiceDots.length; i++) {
+                    if (allDiceDots[i].classList.contains('six')) {
                         allDiceDots[i].classList.add('show');
                     } else {
                         allDiceDots[i].classList.remove('show');
                     }
                 }
             }
+            if (player2Number == 1) {
+                for (let i = 0; i < diceTwo.length; i++) {
+                    if (diceTwo[i].classList.contains('diceTwoOne')) {
+                        diceTwo[i].classList.add('show');
+                    } else {
+                        diceTwo[i].classList.remove('show');
+                    }
+                }
+            } else if (player2Number == 2) {
+                for (let i = 0; i < diceTwo.length; i++) {
+                    if (diceTwo[i].classList.contains('diceTwoTwo')) {
+                        diceTwo[i].classList.add('show');
+                    } else {
+                        diceTwo[i].classList.remove('show');
+                    }
 
-            if(player2Number==1) {
-                for(let i=0;i<diceTwo.length;i++) {
-                    if(diceTwo[i].classList.contains('diceTwoOne')){
-                        diceTwo[i].classList.add('show');
-                    } else {
-                        diceTwo[i].classList.remove('show');
-                    }
-                    
                 }
-            } else if(player2Number==2) {
-                for(let i=0;i<diceTwo.length;i++) {
-                    if(diceTwo[i].classList.contains('diceTwoTwo')){
+            } else if (player2Number == 3) {
+                for (let i = 0; i < diceTwo.length; i++) {
+                    if (diceTwo[i].classList.contains('diceTwoThree')) {
                         diceTwo[i].classList.add('show');
                     } else {
                         diceTwo[i].classList.remove('show');
                     }
-                    
                 }
-            } else if(player2Number==3) {
-                for(let i=0;i<diceTwo.length;i++) {
-                    if(diceTwo[i].classList.contains('diceTwoThree')){
+            } else if (player2Number == 4) {
+                for (let i = 0; i < diceTwo.length; i++) {
+                    if (diceTwo[i].classList.contains('diceTwoFour')) {
                         diceTwo[i].classList.add('show');
                     } else {
                         diceTwo[i].classList.remove('show');
                     }
-                    
                 }
-            } else if(player2Number==4){
-                for(let i=0;i<diceTwo.length;i++) {
-                    if(diceTwo[i].classList.contains('diceTwoFour')){
+            } else if (player2Number == 5) {
+                for (let i = 0; i < diceTwo.length; i++) {
+                    if (diceTwo[i].classList.contains('diceTwoFive')) {
                         diceTwo[i].classList.add('show');
                     } else {
                         diceTwo[i].classList.remove('show');
                     }
-                    
+
                 }
-            }else if(player2Number==5){
-                for(let i=0;i<diceTwo.length;i++) {
-                    if(diceTwo[i].classList.contains('diceTwoFive')){
+            } else {
+                for (let i = 0; i < diceTwo.length; i++) {
+                    if (diceTwo[i].classList.contains('diceTwoSix')) {
                         diceTwo[i].classList.add('show');
                     } else {
                         diceTwo[i].classList.remove('show');
                     }
-                    
-                }
-            }else {
-                for(let i=0;i<diceTwo.length;i++) {
-                    if(diceTwo[i].classList.contains('diceTwoSix')){
-                        diceTwo[i].classList.add('show');
-                    } else {
-                        diceTwo[i].classList.remove('show');
-                    }
-                    
+
                 }
             }
             if (player1Number == player2Number) {
