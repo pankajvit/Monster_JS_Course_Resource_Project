@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play audio files by JS</title>
+    <title>Play audio files by JS-My Version</title>
+    <style>
+        div {
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 30px;
+        }
+        .active {
+            color: red;
+            border: 1px solid red;
+        }
+    </style>
 </head>
+
 <body>
-    
-
-
+    <div class="lionSound">
+        Lion
+    </div>
+    <div class="cougarSound">
+        Cougar
+    </div>
+    <div class="dogSound">
+        Bark
+    </div>
     <script>
+        let animalSoundBox = document.querySelectorAll("div");
+        let lionSound = new Audio('sound/lion.mp3');
+        let cougarSound = new Audio('sound/cougar.mp3');
+        let barkSound = new Audio('sound/bark.mp3');
         
+        for (let i = 0; i < animalSoundBox.length; i++) {
+            animalSoundBox[i].addEventListener("click", function (e) {
+                if(e.target.innerText == "Lion"){
+                    lionSound.play();
+                    e.target.classList.add('active');
+                    resetTextColor(e);
+                }
+                if(e.target.innerText == "Cougar"){
+                    cougarSound.play();
+                    e.target.classList.add('active');
+                    resetTextColor(e);
+                }
+                if(e.target.innerText == "Bark") {
+                    barkSound.play(e);
+                    e.target.classList.add('active');
+                    resetTextColor(e);
+                }
+            });
+            function resetTextColor(e) {
+                setTimeout(() => {
+                    e.target.classList.remove('active');
+                }, 200);
+            }
+        }
     </script>
 </body>
+
 </html>
