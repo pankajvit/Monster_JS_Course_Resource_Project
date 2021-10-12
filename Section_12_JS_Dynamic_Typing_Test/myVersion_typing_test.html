@@ -10,9 +10,51 @@
     </style>
 </head>
 <body>
-    
+    <div class="generatedParagraph"></div>
+    <textarea name="" id="" cols="60" rows="5" disabled></textarea><br>
+    <button>Start</button>
     <script>
-
+        let date,date2;
+        let startTime, endTime;
+        let textArea = document.querySelector('textarea');
+        let btn = document.querySelector('button');
+        let generatedParagraph = document.querySelector('.generatedParagraph');
+        let wordBox = ["nothing is impossible, if you do hard work?","work hard to get success in life","Noone can help you if you not help yourself?","Everyday creating your to do list help you to be organized","wake up everyday and make a to do list to be accountable for your day"];
+        let randomeGeneratedSentence = wordBox[Math.floor(Math.random() * wordBox.length)];
+        let flag = 0;
+        btn.addEventListener('click',function(){
+            date = new Date();
+            startTime = date.getTime();
+            btn.innerText ="Done";
+            textArea.disabled=false;
+            generatedParagraph.innerText = randomeGeneratedSentence;
+            ++flag;
+            if(flag==2) {
+                date2 = new Date();
+                endTime = date2.getTime();
+                let totalTime = ((endTime-startTime)/1000);
+                
+                const generatedParagraphArr = randomeGeneratedSentence.split(" ");
+                let textAreaTypedSentence = textArea.value;
+                const textAreaTypedSentenceArr = textAreaTypedSentence.split(" ");
+                let wordCounter = textAreaTypedSentenceArr.length;
+                let speed = Math.round((wordCounter/totalTime)*60);
+                console.log(speed);
+                let correntWord = 0;
+                generatedParagraphArr.forEach(function(word,index){
+                    if(generatedParagraphArr[index] == textAreaTypedSentenceArr[index]){
+                        correntWord++;
+                    }
+                });
+                console.log(generatedParagraphArr);
+                console.log(textAreaTypedSentenceArr);
+                btn.innerText = "Start";
+                textArea.disabled=true;
+                // generatedParagraph.innerHTML = 'you typed at 10 words per minute.<br>';
+                generatedParagraph.innerHTML = correntWord + " correct out of " + generatedParagraphArr.length;
+                flag = flag - 2;
+            }
+        });
     </script>
 </body>
 </html>
