@@ -7,11 +7,19 @@
     <title>myVersion - Magic8Ball Project</title>
 </head>
 <body>
-    
-
-
+    <div>ask your question ?</div>
+    <input type="text" value=""/>
+    <button class="btn">Ask</button>
+    <div class="Msg"></div>
     <script>
-        
+        const answerArray = ["It will work","Maybe maybe not","Probably Not","Highly Likely","I don't know"];
+        let btn = document.querySelector('.btn');
+        let msgBox = document.querySelector('.Msg');
+        btn.addEventListener('click',function(){
+            let inputValue = document.querySelector('input').value;
+            let answerArrayText = answerArray[Math.floor(Math.random() * answerArray.length)];
+            msgBox.innerHTML = inputValue + answerArrayText;
+        });
     </script>
 </body>
 </html>
