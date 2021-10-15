@@ -1,18 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyVersion - Functionator </title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        .moveableBox {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            color: white;
+            line-height: 100px;
+            text-align: center;
+            position: absolute;
+            top: 200px;
+            left: 300px;
+        }
+
+        .box {
+            width: 70px;
+            height: 40px;
+            border: 1px solid black;
+            display: inline-block;
+            padding: 10px;
+            margin: 2px;
+        }
+
+        body {
+            position: relative;
+        }
+
+        .up {
+            position: absolute;
+            bottom: 20px;
+        }
+
+        .down {
+            position: absolute;
+            top: 20px;
+        }
+
+        .left {
+            position: absolute;
+            right: 20px;
+        }
+
+        .right {
+            position: absolute;
+            left: 20px;
+        }
     </style>
 </head>
+
 <body>
-    <div class="moveableBox"></div>
+    <div class="BoxArea">
+    </div>
+    <div class="moveableBox">Seth Path</div>
     <script>
-        
+        let box = document.querySelector('.moveableBox');
+        let BoxArea = document.querySelector('.BoxArea');
+        document.addEventListener('keydown', function (e) {
+            if (e.key == 'c') {
+                box.style.backgroundColor = changeBackground();
+            }
+            if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) {
+                // console.log(e.which);
+                // console.log(e.key);
+                constructBox(e);
+            }
+            if (e.keyCode == 13) {
+                // console.log('inside enter event listener');
+                console.log(box.getBoundingClientRect());
+                let offset = box.getBoundingClientRect();
+                offset.clientX = offset.clientX + 20;
+                console.log(offset.x + 30);
+                let allBoxWithPath = document.querySelectorAll('.box');
+                for (let i = allBoxWithPath.length - 1; i >= 0; i--) {
+                    let path = allBoxWithPath[i].innerText;
+                    console.log(path);
+                    if (path == "+up") {
+                        let temp = box.offsetTop;
+                        temp = temp - 50;
+                        box.style.top = temp + "px";
+                    } else if (path == "+down") {
+                        let temp = box.offsetTop;
+                        temp = temp + 50;
+                        box.style.top = temp + "px";
+                    } else if (path == "+left") {
+                        let temp = box.offsetLeft;
+                        temp = temp - 50;
+                        box.style.left = temp + "px";
+                    } else if (path == "+right") {
+                        let temp = box.offsetLeft;
+                        temp = temp + 50;
+                        box.style.left = temp + "px";
+                    }
+                }
+            }
+        });
+        function changeBackground() {
+            let color = "rgba(" + generateRandomNumber(255) + "," + generateRandomNumber(255) + "," + generateRandomNumber(255) + ")";
+            return color;
+        }
+        function generateRandomNumber(num) {
+            let rand = Math.floor(Math.random() * num);
+            return rand;
+        }
+        function constructBox(e) {
+            let box = document.createElement("div");
+            box.classList.add("box");
+            if (e.keyCode == 37) {
+                box.textContent = "+left";
+            }
+            else if (e.keyCode == 38) {
+                box.textContent = "+up";
+            }
+            else if (e.keyCode == 39) {
+                box.textContent = "+right";
+            }
+            else if (e.keyCode == 40) {
+                box.textContent = "+down";
+            }
+            BoxArea.appendChild(box);
+        }
     </script>
 </body>
+
 </html>
