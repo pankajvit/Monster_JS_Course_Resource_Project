@@ -11,7 +11,30 @@
 
 
     <script>
-        
+        let counter = 0;
+        let clickCounter = document.createElement("div");
+        clickCounter.innerText = "click the button";
+        // clickCounter.style.backgroundColor ="red";
+        clickCounter.style.color = "black";
+        clickCounter.style.fontSize = "2rem";
+        clickCounter.style.fontWeight = "900";
+        clickCounter.style.pointer = "cursor";
+        document.body.appendChild(clickCounter);
+        let clickBtn = document.createElement("div");
+        clickBtn.innerText = "click me";
+        clickBtn.style.backgroundColor = "red";
+        clickBtn.style.color = "white";
+        clickBtn.style.width ="400px";
+        clickBtn.style.height = "100px";
+        clickBtn.style.textAlign = "center";
+        clickBtn.style.fontSize = "3rem";
+        clickBtn.style.lineHeight ="100px";
+        clickBtn.style.fontFamily = "Arial,sans-sarif";
+        document.body.appendChild(clickBtn);
+        clickBtn.addEventListener("click",function(){
+            ++counter;
+            clickCounter.innerHTML = `<b>You clicked this ${counter} times</b>`
+        });
     </script>
 </body>
 </html>
