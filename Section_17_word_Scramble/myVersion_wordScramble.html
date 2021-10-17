@@ -1,19 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myVersion- Word Scramble-guess the word</title>
     <style>
-
+        .gameArea {
+            display: none;
+        }
     </style>
 </head>
-<body>
-    
 
+<body>
+    <div class="gameArea">
+        <div class="scrambleWord"></div><br>
+        <input id="inputBox" type="text" value="">
+        <button class="guessBtn">Guess</button>
+    </div>
+    <button class="start">start</button>
     <script>
-        
+        const words = ["html", "dog", "javascript", "apple"];
+        let startBtn = document.querySelector('.start');
+        let guessNumber = 0;
+        let OriginalWord;
+        let scrambleWord;
+        startBtn.addEventListener('click', function () {
+            startGame();
+        });
+        document.querySelector('.guessBtn').addEventListener("click", function () {
+            let inputTxt;
+            inputTxt = document.getElementById('inputBox');
+            console.log(inputTxt);
+            let inputTxtWord;
+            inputTxtWord = inputTxt.value;
+            console.log(inputTxtWord);
+            if (inputTxtWord === OriginalWord) {
+                console.log('inside if statement');
+                document.querySelector('.scrambleWord').innerHTML = `<b>Correct it was javascript it ${guessNumber} took  guesses</b>`;
+            } else {
+                document.querySelector('.scrambleWord').innerHTML = `<b>Wrong ${scrambleWord}</b>`;
+                guessNumber++;
+            }
+        });
+        function startGame() {
+            document.querySelector('.gameArea').style.display = "block";
+            OriginalWord = generateARandomWord();
+            console.log(OriginalWord);
+            let OriginalWordArr = OriginalWord.split('');
+            scrambleWord = generateAScrambleWord(OriginalWordArr);
+            console.log(scrambleWord);
+            document.querySelector('.scrambleWord').innerHTML = scrambleWord;
+            startBtn.style.display = "none";
+        }
+
+        function generateARandomWord() {
+            return words[Math.floor(Math.random() * words.length)];
+        }
+
+        function generateAScrambleWord(OriginalWordArr) {
+            let scrambleWordArr = [];
+            while (OriginalWordArr.length > 0) {
+                let i = Math.floor(Math.random() * OriginalWordArr.length);
+                let randomLetter = OriginalWordArr[i];
+                const index = OriginalWordArr.indexOf(OriginalWordArr[i]);
+                if (index > -1) {
+                    OriginalWordArr.splice(index, 1);
+                }
+                scrambleWordArr.push(randomLetter);
+            }
+            let scramble = scrambleWordArr.join("");
+            return scramble;
+        }
     </script>
 </body>
 </html>
