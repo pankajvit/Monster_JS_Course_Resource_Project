@@ -5,11 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Character Counter</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .black {
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    
-
+    <textarea name="" id="" cols="40" rows="5"></textarea>
+    <div class="remainChar"></div>
     <script>
+        let totalCharacter = 20;
+        let maxLength = 20;
+        let textareaChars = document.querySelector('textarea');
+        document.querySelector('.remainChar').innerHTML = `${totalCharacter} characters left`;
+        textareaChars.addEventListener('keydown',function(e){
+            let typedChars = textareaChars.value;
+            let totaltypedCharsLength = typedChars.length;
+            let remainChar = totalCharacter - totaltypedCharsLength;
+            if(remainChar < 13) {
+                document.querySelector('.remainChar').classList.add("red");
+            } 
+            else {
+                document.querySelector('.remainChar').classList.remove("red");
+            }
+            if(remainChar < 0) {
+                textareaChars.value = textareaChars.value.substring(0,20);
+            }
+            document.querySelector('.remainChar').innerHTML = `${remainChar} characters left`;
+        });
         
     </script>
 </body>
