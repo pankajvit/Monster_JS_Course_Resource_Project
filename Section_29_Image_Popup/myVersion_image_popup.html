@@ -59,30 +59,38 @@
 </head>
 <body>
     <div class="pop">
-        <img src="https://source.unsplash.com/collection/190727/1600x900" alt="" class="img">
-        <img src="https://source.unsplash.com/collection/190728/1600x900" alt="" class="img">
-        <img src="https://source.unsplash.com/daily" alt="" class="img">
-        <img src="https://source.unsplash.com/user/erondu/daily" alt="" class="img">
-        <img src="https://source.unsplash.com/weekly?water" alt="" class="img">
+        <img src="http://via.placeholder.com/150/09f?text=image1">
+        <img src="http://via.placeholder.com/150/E4E?text=image2">
+        <img src="http://via.placeholder.com/150/1f1?text=image3">
+        <img src="http://via.placeholder.com/150/2h2?text=image4">
+        <img src="http://via.placeholder.com/150/19h?text=image5">
     </div>
     <div class="show hide">
         <div class="overlay close">
 
         </div>
         <div class="output">
-            <spna class="close">X</spna>
+            <span class="close">X</span>
             <img src="">
         </div>
     </div>
     <script>
-        const images = document.querySelectorAll('.pop .img');
-        const outputContainer = document.querySelector('.show');
+        const output = document.querySelector(".output");
+        const show = document.querySelector(".show");
+        const close = document.querySelectorAll(".close");
+        const images = document.querySelectorAll(".pop img");
         images.forEach(function(ele){
+            ele.addEventListener("click",popImage);
+        });
+        close.forEach(function(ele){
             ele.addEventListener('click',function(){
-                outputContainer.classList.remove("hide");
-                document.querySelector('.output img').src = ele.src;
+                show.classList.add("hide");
             });
         });
+        function popImage(e) {
+            output.querySelector("img").setAttribute("src",this.src);
+            show.classList.remove("hide");
+        }
     </script>
 </body>
 
