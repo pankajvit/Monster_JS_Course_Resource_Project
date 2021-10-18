@@ -12,53 +12,77 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        .img {
+        .pop .img {
             width: 200px;
             height: 200px;
             margin: 0px 2px;
         }
+        .hide {
+            display: none;
+        }
+        .overlay {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .66);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .output {
+            width: 60%;
+            height: 40%;
+            background-color: white;
+            position: absolute;
+            top: 30%;
+            left: 20%;
+            overflow: hidden;
+            z-index: 100;
+        }
+        .output img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .output span {
+            position: absolute;
+            top: 10px;
+            right: 5%;
+            z-index: 105;
+            cursor: pointer;
+            color: white;
+            background-color: black;
+            padding: 5px;
+        }
     </style>
 </head>
-
 <body>
-    <img src="https://source.unsplash.com/collection/190727/1600x900" alt="" class="img">
-    <img src="https://source.unsplash.com/collection/190728/1600x900" alt="" class="img">
-    <img src="https://source.unsplash.com/daily" alt="" class="img">
-    <img src="https://source.unsplash.com/user/erondu/daily" alt="" class="img">
-    <img src="https://source.unsplash.com/weekly?water" alt="" class="img">
+    <div class="pop">
+        <img src="https://source.unsplash.com/collection/190727/1600x900" alt="" class="img">
+        <img src="https://source.unsplash.com/collection/190728/1600x900" alt="" class="img">
+        <img src="https://source.unsplash.com/daily" alt="" class="img">
+        <img src="https://source.unsplash.com/user/erondu/daily" alt="" class="img">
+        <img src="https://source.unsplash.com/weekly?water" alt="" class="img">
+    </div>
+    <div class="show hide">
+        <div class="overlay close">
+
+        </div>
+        <div class="output">
+            <spna class="close">X</spna>
+            <img src="">
+        </div>
+    </div>
     <script>
-        const allImg = document.querySelectorAll('.img');
-        for (let i = 0; i < allImg.length; i++) {
-            allImg[i].addEventListener('click', function () {
-                this.style.position = "absolute";
-                this.style.top = "35%";
-                this.style.left = "30%";
-                this.style.width = "700px";
-                this.style.height = "300px";
-                document.querySelector('body').style.backgroundColor = "#575757";
-                const span = document.createElement("span");
-                span.innerText = "X";
-                span.style.backgroundColor = "black";
-                span.style.color = "white";
-                span.style.textAlign = "center";
-                span.style.lineHeight = "30px";
-                span.style.width = "30px";
-                span.style.height = "30px";
-                span.style.position = "absolute";
-                span.style.top = "38%";
-                span.style.left = "78%";
-                span.style.cursor = "pointer";
-                document.querySelector('body').appendChild(span);
-                span.addEventListener('click', function () {
-                    allImg[i].style.position = "static";
-                    allImg[i].style.width = "200px";
-                    allImg[i].style.height = "200px";
-                    this.style.display = "none";
-                    document.querySelector('body').style.backgroundColor = "white";
-                });
+        const images = document.querySelectorAll('.pop .img');
+        const outputContainer = document.querySelector('.show');
+        images.forEach(function(ele){
+            ele.addEventListener('click',function(){
+                outputContainer.classList.remove("hide");
+                document.querySelector('.output img').src = ele.src;
             });
-        }
+        });
     </script>
 </body>
 
