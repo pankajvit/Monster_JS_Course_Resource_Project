@@ -7,51 +7,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyVersion - Element Scrolling Content</title>
     <style>
-        .textContainer {
+        #cElement {
+            background-color: #c9c9c9;
             width: 400px;
-            height: 300px;
-            background-color: rgb(233, 219, 219);
+            font-size: 1em;
+            position: relative;
             border: 1px solid black;
-            overflow: scroll;
-            overflow-y: hidden;
-            overflow-x: hidden;
+            overflow: hidden;
+        }
+        #cElement #sElement {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <input type="number" />
-    <div class="speedAndCoordination">Scroll speed 10 Y position -150</div>
-    <div class="textContainer">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto, quis cupiditate et molestias
-            mollitia in ipsam. Suscipit delectus adipisci eveniet cum libero voluptatum nesciunt sequi temporibus
-            voluptas doloribus! Ex?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam tempora reiciendis libero quia corporis eius
-            voluptatem, pariatur et omnis, labore mollitia quae ipsam rerum voluptas quibusdam harum iusto voluptatibus,
-            asperiores eos facilis ipsa. In aspernatur impedit harum odit, quidem et alias sequi saepe nihil, blanditiis
-            consectetur, doloremque quas fugit ad?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga enim, esse nihil quod at, earum eius eum quam
-            doloremque, dolores rem debitis. Assumenda at dolorum dolor dignissimos soluta consequatur fugit minima,
-            rerum voluptatum, harum illo dicta eveniet distinctio maxime enim quam culpa nobis officia modi officiis
-            ducimus asperiores alias. Ex sed ipsum nihil dolor placeat et consequuntur ipsam vitae quaerat debitis
-            itaque commodi molestiae ducimus optio, ullam, pariatur porro nemo atque perferendis dolorum similique
-            tempora fugit accusantium suscipit? Suscipit necessitatibus laborum corrupti rerum dicta minus harum quam id
-            cum tempora error exercitationem sit iusto autem non quos, quibusdam saepe. Saepe.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab quia amet, magni soluta error labore deserunt
-            cumque fugit veritatis facilis.</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus nostrum quia, suscipit quaerat labore
-            tenetur officia maxime ab harum provident, officiis perspiciatis est nulla libero voluptas quas veniam. Nisi
-            itaque ipsa sequi, qui quia numquam repudiandae praesentium temporibus doloremque magni dolorem nobis
-            commodi exercitationem delectus eum asperiores cumque aliquam odit consequuntur quasi autem repellat illum
-            dolore? Eos repudiandae id ut ratione odit, placeat neque, quibusdam eveniet iusto sunt reprehenderit quae!
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod officiis enim cupiditate vero voluptate modi
-            aperiam exercitationem tempora sint voluptatum repellendus unde ullam dolor ipsa pariatur consequatur qui
-            eius, dolorum porro veniam sed repudiandae laborum dicta! Aperiam quaerat recusandae voluptate architecto
-            natus reprehenderit ab sed, aut, laborum commodi porro voluptatibus consequuntur. Dolore ducimus dignissimos
-            veniam nulla asperiores similique, eaque est!</p>
+    <div>
+        <input type="number" value="10">
+        <div class="output"></div>
+        <div id="cElement">
+            <div id="sElement">
+            </div>
+        </div>
+        <button>Click</button>
     </div>
-    <button>Click</button>
+    <script>
+        const button = document.querySelector("button");
+        const cElement = document.querySelector("#cElement");
+        const sElement = document.querySelector("#sElement");
+        const speed = document.querySelector('input');
+        const output = document.querySelector('output');
+        let scroller = true;
+        const content = "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis iusto, quis cupiditate et molestias mollitia in ipsam. Suscipit delectus adipisci eveniet cum libero voluptatum nesciunt sequi temporibus voluptas doloribus! Ex?</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam tempora reiciendis libero quia corporis eius voluptatem, pariatur et omnis, labore mollitia quae ipsam rerum voluptas quibusdam harum iusto voluptatibus, asperiores eos facilis ipsa. In aspernatur impedit harum odit, quidem et alias sequi saepe nihil, blanditiis consectetur, doloremque quas fugit ad?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga enim, esse nihil quod at, earum eius eum quam doloremque, dolores rem debitis. Assumenda at dolorum dolor dignissimos soluta consequatur fugit minima, rerum voluptatum, harum illo dicta eveniet distinctio maxime enim quam culpa nobis officia modi officiis ducimus asperiores alias. Ex sed ipsum nihil dolor placeat et consequuntur ipsam vitae quaerat debitis itaque commodi molestiae ducimus optio, ullam, pariatur porro nemo atque perferendis dolorum similique tempora fugit accusantium suscipit? Suscipit necessitatibus laborum corrupti rerum dicta minus harum quam id cum tempora error exercitationem sit iusto autem non quos, quibusdam saepe. Saepe.</p><p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab quia amet, magni soluta error labore deserunt cumque fugit veritatis facilis.</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus nostrum quia, suscipit quaerat labore tenetur officia maxime ab harum provident, officiis perspiciatis est nulla libero voluptas quas veniam. Nisi itaque ipsa sequi, qui quia numquam repudiandae praesentium temporibus doloremque magni dolorem nobis commodi exercitationem delectus eum asperiores cumque aliquam odit consequuntur quasi autem repellat illum dolore ? Eos repudiandae id ut ratione odit, placeat neque, quibusdam eveniet iusto sunt reprehenderit quae!</p>";
+
+        window.onload = setupScroll;
+        button.addEventListener('click',function(){
+            console.log("click");
+        });
+        cElement.addEventListener('mouseenter',scrollSpeed);
+        cElement.addEventListener('mouseleave',scrollSpeed);
+        // function scrollSpeed(e) {
+        //     console.log(e.type);
+        //     scroller = (e.type=='mouseenter') ? false : true;
+        //     output.innerHTML = "Mouse stopper";
+        // }
+        function setupScroll() {
+            sElement.innerHTML = content;
+            let temp = sElement.getBoundingClientRect();
+            console.log(temp);
+            cElement.style.height = temp.height + "px";
+            
+
+        }
+
+        
+    </script>
 </body>
 
 </html>
