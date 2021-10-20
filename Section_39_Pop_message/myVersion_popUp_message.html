@@ -5,13 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myVersion-popUp_message</title>
+    <style>
+        .popupBox {
+            display: none;
+            width: 700px;
+            height: 200px;
+            position: absolute;
+            top: 100px;
+            left: 400px;
+            border: 1px solid black;
+            background-color: #DDDDDD;
+        }
+        .closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+        }
+        .contentbox {
+            border: 1px solid green;
+            width: 200px;
+            padding: 20px 5px;
+            text-align: center;
+        }
+        .Msg {
+            position: absolute;
+            top: 30px;
+            left: 300px;
+        }
+    </style>
 </head>
 <body>
-    
-
-
+    <div class="contentbox">Click Me</div>
+    <div class="contentbox">JavaScript</div>
+    <div class="contentbox">Click Me 2</div>
+    <div class="popupBox">
+        <div class="Msg"></div>
+        <button class="closeBtn">close</button>
+    </div>
     <script>
-        
+        const contentbox = document.querySelectorAll('.contentbox');
+        const Msg = document.querySelector('.Msg');
+        const popupBox = document.querySelector('.popupBox');
+        const closeBtn = document.querySelector('.closeBtn');
+        contentbox.forEach(function(ele,index){
+            ele.addEventListener('click',function(){
+                popupBox.style.display = "inline-block";
+                if(index == 0){
+                    Msg.innerText = "Hello World";
+                } else if(index == 1){
+                    Msg.innerText = "JavaScript is fun";
+                } else if(index == 2){
+                    Msg.innerText = "Wow cool";
+                }
+            });
+            closeBtn.addEventListener('click',function(){
+                popupBox.style.display = "none";
+            });
+        });
     </script>
 </body>
 </html>
