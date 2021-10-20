@@ -49,32 +49,32 @@
         star.forEach(function (ele, index) {
             ele.addEventListener('click', starRedHighLight);
             ele.addEventListener('mouseenter', starYellowHighLight);
-            ele.addEventListener('mouseleave',starRestColor);
+            ele.addEventListener('mouseleave', starRestColor);
         });
-        let reded=-1;
-        let newClicked=-1;
+        let reded = -1;
+        let newClicked = -1;
         function starRedHighLight(e) {
             let i;
             for (i = 0; i < star.length; i++) {
                 if (star[i] == e.target) {
                     newClicked++;
                     star[i].style.color = "red";
-                    if(reded>i){
+                    if (reded > i) {
                         resetOtherStarColor();
                     }
                     reded = i;
-                    newClicked=-1;
+                    newClicked = -1;
                     break;
                 } else {
                     newClicked++;
                     star[i].style.color = "red";
                 }
             }
-            document.querySelector('.ratingMsg').innerText = `you rated this ${reded+1} stars`;
+            document.querySelector('.ratingMsg').innerText = `you rated this ${reded + 1} stars`;
             console.log(reded);
         }
         function resetOtherStarColor() {
-            for(let i=newClicked+1;i<=reded;i++) {
+            for (let i = newClicked + 1; i <= reded; i++) {
                 star[i].style.color = "#DDDDDD";
             }
         }
