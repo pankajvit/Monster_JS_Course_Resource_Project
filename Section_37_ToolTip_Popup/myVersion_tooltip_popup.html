@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyVersion- ToolTip Popup</title>
-</head>
-<body>
-    
+    <style>
+        .tooltipContent {
+            display: none;
+            position: absolute;
+        }
 
+        .highLight {
+            background-color: rgb(224, 218, 238);
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Hello World welcome to <span class="highLight">JavaScript</span> Course</p><br>
+    <p>Just another tool tip with some random content like Hello World all part of the <span
+            class="highLight">JavaScript</span> Course</p>
+    <span class="tooltipContent">Tool Tip Content</span>
+    <span class="tooltipContent">JavaScript</span>
     <script>
-        
+        const highLightText = document.querySelectorAll(".highLight");
+        const tooltipContent = document.querySelectorAll(".tooltipContent");
+        highLightText.forEach(function(ele,index){
+            ele.addEventListener("mouseover",function(e){
+                let temp = highLightText[index].getBoundingClientRect();
+                let top = temp.top + 20 + "px";
+                let left = Math.floor(temp.left) + 10 + "px";
+                tooltipContent[index].style.display = "inline-block";
+                tooltipContent[index].style.backgroundColor = "black";
+                tooltipContent[index].style.color = "white";
+                tooltipContent[index].style.border = "1px solid red";
+                tooltipContent[index].style.top = top;
+                tooltipContent[index].style.left = left;
+            });
+            ele.addEventListener("mouseout",function(e){
+                tooltipContent[index].style.display = "none";
+            });
+        });
     </script>
 </body>
+
 </html>
