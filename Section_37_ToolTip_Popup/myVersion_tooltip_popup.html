@@ -28,8 +28,8 @@
     <script>
         const highLightText = document.querySelectorAll(".highLight");
         const tooltipContent = document.querySelectorAll(".tooltipContent");
-        highLightText.forEach(function(ele,index){
-            ele.addEventListener("mouseover",function(e){
+        highLightText.forEach(function (ele, index) {
+            ele.addEventListener("mouseover", function (e) {
                 let temp = highLightText[index].getBoundingClientRect();
                 let top = temp.top + 20 + "px";
                 let left = Math.floor(temp.left) + 10 + "px";
@@ -40,7 +40,7 @@
                 tooltipContent[index].style.top = top;
                 tooltipContent[index].style.left = left;
             });
-            ele.addEventListener("mouseout",function(e){
+            ele.addEventListener("mouseout", function (e) {
                 tooltipContent[index].style.display = "none";
             });
         });
