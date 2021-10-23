@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myVersion-Clipboard</title>
+</head>
+
+<body>
+
+    <p>Source Text</p>
+    <textarea name="sourceText" rows="4" cols="50">Hello World</textarea><br>
+    <button class="moveTxt">Move Text</button>
+    <button class="copyTxt">Copy Text</button><br>
+    <textarea name="destText" rows="4" cols="50"></textarea>
+    <div class="output"></div>
+    <script>
+        const sourceText = document.querySelector('textarea[name="sourceText"]');
+        const destText = document.querySelector('textarea[name="destText"]');
+        const moverBtn = document.querySelector('.moveTxt');
+        const copyBtn = document.querySelector('.copyTxt');
+        const output = document.querySelector('.output');
+        moverBtn.addEventListener('click',function(){
+            let temp = sourceText.value;
+            destText.value = temp;
+        }); 
+        copyBtn.addEventListener('click',function(){
+            let temp = sourceText.value;
+            output.innerHTML = `<b>copied content :</b><br><br> ${temp}`
+        });
+    </script>
+</body>
+
+</html>
