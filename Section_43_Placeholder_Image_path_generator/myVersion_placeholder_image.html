@@ -1,18 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myVersion-placeholder_image</title>
+    <style>
+        .outputBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: red;
+            color: black;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
-    
-
-
-
+    <span>Image Size :</span>
+    <select class="imgSize">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+    </select><br>
+    <span>Text on Image</span>
+    <input type="text" name="name" value=""><br>
+    <span>Color of Background:</span>
+    <input type="color" name="bgColor"><br>
+    <span>Color of Text</span>
+    <input type="color" name="txtColor"><br>
+    <div class="outputBox hide">
+        <div class="uname"></div>
+    </div>
     <script>
-        
+        let imgSize = document.querySelector('.imgSize');
+        let name = document.querySelector('input[name="name"]');
+        let bgCol = document.querySelector('input[name="bgColor"]');
+        let txtColor = document.querySelector('input[name="txtColor"]');
+        let outputBox = document.querySelector('.outputBox');
+        let uname = document.querySelector('.uname');
+        ["keyup", "keydown", "change"].forEach(function (e) {
+            imgSize.addEventListener(e, formOutputBox);
+            name.addEventListener(e, formOutputBox);
+            bgCol.addEventListener(e, formOutputBox);
+            txtColor.addEventListener(e, formOutputBox);
+        });
+        function formOutputBox() {
+            let imgSizeString = imgSize.value;
+            let username = name.value;
+            let bcolor = bgCol.value;
+            let tcolor = txtColor.value;
+            if (imgSizeString == "small") {
+                outputBox.classList.remove('hide');
+                outputBox.style.width = "100px";
+                outputBox.style.height = "100px";
+                outputBox.style.backgroundColor = bcolor;
+                uname.innerHTML = username;
+                uname.style.color = tcolor;
+                uname.style.fontSize = "1em";
+            } else if (imgSizeString == "medium") {
+                outputBox.classList.remove('hide');
+                outputBox.style.width = "200px";
+                outputBox.style.height = "200px";
+                outputBox.style.backgroundColor = bcolor;
+                uname.innerHTML = username;
+                uname.style.color = tcolor;
+                uname.style.fontSize = "2em";
+            } else if (imgSizeString == "large") {
+                outputBox.classList.remove('hide');
+                outputBox.style.width = "400px";
+                outputBox.style.height = "400px";
+                outputBox.style.backgroundColor = bcolor;
+                uname.innerHTML = username;
+                uname.style.color = tcolor;
+                uname.style.fontSize = "4em";
+            }
+        }
     </script>
 </body>
+
 </html>
