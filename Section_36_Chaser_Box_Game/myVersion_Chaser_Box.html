@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myVersion-Chaser Box Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .square {
+            border: 1px solid #DDDDDD;
+            color: #DDDDDD;
+            width: 98px;
+            height: 98px;
+            display: inline-block;
+            margin-left: -4px;
+            text-align: center;
+            line-height: 98px;
+            font-size: 1.5em;
+        }
+
+        .container {
+            margin: 10px;
+            width: 800px;
+            height: 600px;
+        }
+
+        .active-red {
+            background-color: red;
+        }
+
+        .random-green {
+            background-color: green;
+        }
+
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="square north-border west-border active-red">1</div>
+        <div class="square north-border">2</div>
+        <div class="square north-border">3</div>
+        <div class="square north-border">4</div>
+        <div class="square north-border">5</div>
+        <div class="square north-border">6</div>
+        <div class="square north-border">7</div>
+        <div class="square north-border east-border">8</div>
+        <div class="square west-border">9</div>
+        <div class="square">10</div>
+        <div class="square">11</div>
+        <div class="square">12</div>
+        <div class="square">13</div>
+        <div class="square">14</div>
+        <div class="square">15</div>
+        <div class="square east-border">16</div>
+        <div class="square west-border">17</div>
+        <div class="square">18</div>
+        <div class="square">19</div>
+        <div class="square">20</div>
+        <div class="square">21</div>
+        <div class="square">22</div>
+        <div class="square">23</div>
+        <div class="square east-border">24</div>
+        <div class="square west-border">25</div>
+        <div class="square">26</div>
+        <div class="square">27</div>
+        <div class="square">28</div>
+        <div class="square">29</div>
+        <div class="square">30</div>
+        <div class="square">31</div>
+        <div class="square east-border">32</div>
+        <div class="square west-border">33</div>
+        <div class="square">34</div>
+        <div class="square">35</div>
+        <div class="square">36</div>
+        <div class="square">37</div>
+        <div class="square">38</div>
+        <div class="square">39</div>
+        <div class="square east-border">40</div>
+        <div class="square south-border west-border">41</div>
+        <div class="square south-border">42</div>
+        <div class="square south-border">43</div>
+        <div class="square south-border">44</div>
+        <div class="square south-border">45</div>
+        <div class="square south-border">46</div>
+        <div class="square south-border">47</div>
+        <div class="square south-border east-border">48</div>
+    </div>
+    <div class="ScoreBoard">
+        Score :<span class="score">0</span>
+    </div>
+    <script>
+
+        //selection of squre boxes
+        let square = document.querySelectorAll(".square");
+        //make a random Number
+        let random = randomNumber();
+        //made random Number assigned to box to make green background
+        square[random].classList.add('random-green');
+        //score 
+        let score = 0;
+        //event listener on keydown
+        document.body.addEventListener('keydown', function (e) {
+            let activeRed = document.querySelector(".active-red");
+            let activeRedRef = activeRed;
+            e.preventDefault();
+            let key = e.key;
+            console.log(key);
+            if (key == "ArrowRight") {
+                removeActiveRedBox(activeRed);
+                moveActiveRedBoxRight(activeRedRef);
+                scoreCalculation();
+            }
+            if (key == "ArrowLeft") {
+                removeActiveRedBox(activeRed);
+                moveActiveRedBoxLeft(activeRedRef);
+                scoreCalculation();
+            }
+            if (key == "ArrowUp") {
+                let activeRedBoxIndex = searchIndexRedActive();
+                if (activeRedBoxIndex > 7) {
+                    square[activeRedBoxIndex - 8].classList.add('active-red');
+                    removeActiveRedBox(activeRed);
+                }
+                scoreCalculation();
+                console.log(activeRedBoxIndex);
+            }
+            if (key == "ArrowDown") {
+                let activeRedBoxIndex = searchIndexRedActive();
+                if (activeRedBoxIndex < 40) {
+                    square[activeRedBoxIndex + 8].classList.add('active-red');
+                    removeActiveRedBox(activeRed);
+                }
+                scoreCalculation();
+            }
+        });
+
+        function randomNumber() {
+            return Math.floor(Math.random() * square.length) + 1;
+        }
+        function moveActiveRedBoxRight(ele) {
+            if (!(ele.classList.contains('east-border'))) {
+                if (ele.nextElementSibling == null) {
+                    ele.classList.add('active-red');
+                } else {
+                    ele.nextElementSibling.classList.add("active-red");
+                }
+            } else {
+                ele.classList.add('active-red');
+            }
+        }
+        function moveActiveRedBoxLeft(ele) {
+            if (!(ele.classList.contains('west-border'))) {
+                if (ele.previousElementSibling == null) {
+                    ele.classList.add('active-red');
+                }
+                else {
+                    ele.previousElementSibling.classList.add("active-red");
+                }
+            } else {
+                ele.classList.add('active-red');
+            }
+        }
+        function removeActiveRedBox(ele) {
+            ele.classList.remove("active-red");
+        }
+        function searchIndexRedActive() {
+            let boxIndex;
+            square.forEach(function (ele, index) {
+                if (ele.classList.contains('active-red')) {
+                    boxIndex = index;
+                }
+            });
+            return boxIndex;
+        }
+        function scoreCalculation() {
+            let redBoxIndex = searchIndexRedActive();
+            let greenBoxIndex = random;
+            if (redBoxIndex == greenBoxIndex) {
+                score++;
+                reAllocateGreenBox();
+            }
+            document.querySelector('.score').innerHTML = score;
+        }
+        function reAllocateGreenBox() {
+            square[random].classList.remove('random-green');
+            random = randomNumber();
+            //made random Number assigned to box to make green background
+            square[random].classList.add('random-green');
+        }
+    </script>
+</body>
+
+</html>
