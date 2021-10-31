@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myVersion-Dynamic-Shopping-List</title>
+    <style>
+        ul li {
+            list-style: none;
+            margin-left: -40px;
+            width: 300px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .operation {
+            display: flex;
+            justify-content: space-around;
+            width: 100px;
+            color: red;
+        }
+
+        .delbtn {
+            cursor: pointer;
+        }
+
+        .editbtn {
+            cursor: pointer;
+        }
+
+        li>span {
+            /* border: 1px solid green; */
+            width: 50%;
+        }
+
+        [contenteditable]:focus {
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My List</h1>
+    <ul class="list">
+        <li>
+            <span>Bananas</span>
+            <div class="operation">
+                <span class="delbtn">Delete</span>
+                <span class="editbtn">Edit</span>
+            </div>
+        </li>
+        <li>
+            <span>Milk</span>
+            <div class="operation">
+                <span class="delbtn">Delete</span>
+                <span class="editbtn">Edit</span>
+            </div>
+        </li>
+        <li>
+            <span>Apples</span>
+            <div class="operation">
+                <span class="delbtn">Delete</span>
+                <span class="editbtn">Edit</span>
+            </div>
+        </li>
+        <li>
+            <span>Eggs</span>
+            <div class="operation">
+                <span class="delbtn">Delete</span>
+                <span class="editbtn">Edit</span>
+            </div>
+        </li>
+        <li>
+            <span>Cake</span>
+            <div class="operation">
+                <span class="delbtn">Delete</span>
+                <span class="editbtn">Edit</span>
+            </div>
+        </li>
+    </ul>
+    <input type="text" name="new_list" />
+    <button class="addItem">Add Item</button>
+    <script>
+        let addItem = document.querySelector('.addItem');
+        let delItem = document.querySelectorAll('.delbtn');
+        let editItem = document.querySelectorAll('.editbtn');
+        let list = document.querySelector('.list');
+        addItem.addEventListener('click', function () {
+
+            // console.log('inside addItem listener');
+            let inputValue = document.querySelector('input').value;
+            // console.log(inputValue);
+            let liEle = document.createElement("li");
+            let spanEle = document.createElement("span");
+            spanEle.innerText = inputValue;
+            liEle.appendChild(spanEle);
+            let operationDiv = document.createElement("div");
+            operationDiv.className = "operation";
+            let delBtn = document.createElement("span");
+            delBtn.className = "delbtn";
+            delBtn.innerText = "Delete";
+            console.log(delBtn);
+            operationDiv.appendChild(delBtn);
+            let editBtn = document.createElement("span");
+            editBtn.className = "editbtn";
+            editBtn.innerText = "Edit";
+            console.log(editBtn);
+            operationDiv.appendChild(editBtn);
+            liEle.appendChild(operationDiv);
+            console.log(operationDiv);
+            list.appendChild(liEle);
+            document.querySelector('input').value = "";
+        });
+        // delItem.forEach(function (ele, index) {
+        //     ele.addEventListener('click', function () {
+        //         ele.parentElement.parentElement.remove();
+        //     });
+        // });
+        list.addEventListener('click', function (e) {
+            if (e.target.classList.contains('delbtn')) {
+                e.target.parentElement.parentElement.remove();
+            }
+        });
+        // list.addEventListener('click',function(e){
+        //     if(e.target.classList.contains('editbtn')){
+        //         console.log(e.target.parentElement.previousElementSibling);
+        //         let listLi = e.target.parentElement.parentElement;
+        //         let span = e.target.parentElement.previousElementSibling;
+        //         let inputBox = document.createElement("input");
+        //         inputBox.value = span.innerText;
+        //         listLi.appendChild(inputBox);
+        //         e.target.parentElement.previousElementSibling.remove();
+        //     }
+        // });
+        list.addEventListener('click', function (e) {
+            if (e.target.classList.contains('editbtn')) {
+                let inputBox = document.createElement("input");
+                inputBox.type = "text";
+                inputBox.value = e.target.parentElement.previousElementSibling.innerText;
+                e.target.parentElement.parentElement.style.backgroundColor = "yellow";
+                e.target.parentElement.previousElementSibling.remove();
+                e.target.parentElement.parentElement.insertBefore(inputBox, e.target.parentElement);
+                inputBox.addEventListener('blur', function () {
+                    let content = inputBox.value;
+                    console.log(content);
+                    let span = document.createElement("span");
+                    span.innerText = content;
+                    e.target.parentElement.parentElement.insertBefore(span, e.target.parentElement);
+                    e.target.parentElement.previousElementSibling.previousElementSibling.remove();
+                    e.target.parentElement.parentElement.style.backgroundColor = "white";
+                });
+            }
+        });
+        // editItem.forEach(function (ele, index) {
+        //     ele.addEventListener('click', function () {
+        //         let inputBox = document.createElement("input");
+        //         inputBox.type = "text";
+        //         inputBox.value = ele.parentElement.previousElementSibling.innerText;
+        //         ele.parentElement.parentElement.style.backgroundColor = "yellow";
+        //         console.log(inputBox.value);
+        //         ele.parentElement.previousElementSibling.remove();
+        //         ele.parentElement.parentElement.insertBefore(inputBox, ele.parentElement);
+        //         inputBox.addEventListener('blur', function () {
+        //             let content = inputBox.value;
+        //             console.log(content);
+        //             let span = document.createElement("span");
+        //             span.innerText = content;
+        //             ele.parentElement.parentElement.insertBefore(span, ele.parentElement);
+        //             ele.parentElement.previousElementSibling.previousElementSibling.remove();
+        //             ele.parentElement.parentElement.style.backgroundColor = "white";
+        //         });
+        //     });
+        // });
+    </script>
+</body>
+
+</html>
