@@ -1,17 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myVersion- JS Calculator</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .calculatorArea {
+            margin: 10px;
+            width: 400px;
+            height: 350px;
+            background-color: #696969;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .outputArea {
+            margin: 10px 5px;
+            padding-right: 5px;
+            width: 380px;
+            height: 40px;
+            background-color: white;
+            text-align: right;
+            font-size: 2em;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin: 10px 0px;
+        }
+
+        .button {
+            text-align: center;
+            width: 70px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #F0FFFF;
+        }
+    </style>
 </head>
+
 <body>
-    
-
-
+    <div class="calculatorArea">
+        <div class="outputArea">0</div>
+        <div class="row">
+            <div class="button">1</div>
+            <div class="button">2</div>
+            <div class="button">3</div>
+            <div class="button">+</div>
+        </div>
+        <div class="row">
+            <div class="button">4</div>
+            <div class="button">5</div>
+            <div class="button">6</div>
+            <div class="button">-</div>
+        </div>
+        <div class="row">
+            <div class="button">7</div>
+            <div class="button">8</div>
+            <div class="button">9</div>
+            <div class="button">*</div>
+        </div>
+        <div class="row">
+            <div class="button">C</div>
+            <div class="button">0</div>
+            <div class="button">=</div>
+            <div class="button">/</div>
+        </div>
+    </div>
     <script>
-        
+        const btn = document.querySelectorAll('.button');
+        const output = document.querySelector('.outputArea');
+        let prevChar = "";
+        let exp;
+        btn.forEach(function (ele, index) {
+            ele.addEventListener('click', function () {
+                if (output.innerText == "0") {
+                    output.innerText = ele.innerText;
+                }
+                else {
+                    prevChar = output.innerText;
+                    let typedChar = ele.innerText;
+                    if (typedChar == "=") {
+                        let result;
+                        result = eval(exp);
+                        output.innerText = result;
+                    } else if (typedChar == "C") {
+                        output.innerText = "0";
+                    } else {
+                        exp = prevChar + typedChar;
+                        console.log(exp);
+                        output.innerText = exp;
+                    }
+                }
+            });
+        });
     </script>
 </body>
+
 </html>
