@@ -1,16 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myVersion - CountDown Timer</title>
+    <style>
+        input[type="date"] {
+            width: 200px;
+            height: 50px;
+            font-weight: bold;
+            padding: 0px 10px;
+            margin: 10px 20px;
+        }
+        .container {
+            width: 450px;
+            height: 10px;
+            background-color: blue;
+            margin: 20px 10px;
+            padding-left: 20px;
+        }
+        .timeBox {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            padding: 10px;
+            border-radius: 20px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .box {
+            width: 100px;
+            height: 50px;
+            display: inline-block;
+            background-color: black;
+            color: white;
+            position: relative;
+            bottom: 20px;
+            line-height: 50px ;
+            border-radius: 10px;
+        }
+    </style>
 </head>
-<body>
-    
 
+<body>
+    <input type="date">
+    <div class="container">
+        <span class="box"><span class="days timeBox">0</span>Days</span>
+        <span class="box"><span class="hours timeBox">0</span>Hours</span>
+        <span class="box"><span class="min timeBox">0</span>Minutes</span>
+        <span class="box"><span class="sec timeBox">0</span>Seconds</span>
+    </div>
     <script>
         
     </script>
 </body>
+
 </html>
