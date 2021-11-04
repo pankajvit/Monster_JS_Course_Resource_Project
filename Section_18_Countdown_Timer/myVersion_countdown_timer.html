@@ -14,6 +14,7 @@
             padding: 0px 10px;
             margin: 10px 20px;
         }
+
         .container {
             width: 450px;
             height: 10px;
@@ -21,6 +22,7 @@
             margin: 20px 10px;
             padding-left: 20px;
         }
+
         .timeBox {
             width: 20px;
             height: 20px;
@@ -30,6 +32,7 @@
             margin-left: 5px;
             margin-right: 5px;
         }
+
         .box {
             width: 100px;
             height: 50px;
@@ -38,7 +41,7 @@
             color: white;
             position: relative;
             bottom: 20px;
-            line-height: 50px ;
+            line-height: 50px;
             border-radius: 10px;
         }
     </style>
@@ -53,7 +56,32 @@
         <span class="box"><span class="sec timeBox">0</span>Seconds</span>
     </div>
     <script>
-        
+        let endDate = document.querySelector('input[type="date"]');
+        endDate.addEventListener('change', function () {
+            setInterval(function () {
+            let endDate = document.querySelector('input[type="date"]');
+            endDate = Date.parse(endDate.value);
+            console.log(endDate);
+            let nowDate = new Date();
+            console.log(nowDate.getTime());
+            diff = endDate - nowDate;
+            console.log(diff);
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            console.log(days);
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            console.log(hours);
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            console.log(minutes);
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            console.log(seconds);
+            document.querySelector('.days').innerHTML = days;
+            document.querySelector('.hours').innerHTML = hours;
+            document.querySelector('.min').innerHTML = minutes;
+            document.querySelector('.sec').innerHTML = seconds;
+            }, 1000);
+        });
+
+
     </script>
 </body>
 
