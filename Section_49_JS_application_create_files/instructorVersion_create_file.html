@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instructorVersion-JS_Application_Create_File</title>
+</head>
+
+<body>
+    <div class="output"></div>
+    <button>Download CSV File</button>
+    <script>
+        let myData = [
+            ["Title", "Content"],
+            ["Row1", "HTML"],
+            ["Row2", "CSS"],
+            ["Row3", "JavaScript"],
+        ];
+        const output = document.querySelector(".output");
+        const btn = document.querySelector("button");
+        btn.style.backgroundColor = "green";
+        btn.style.color = "white";
+        btn.style.padding = "15px";
+        btn.style.fontStyle = "1.5em";
+        btn.style.fontSize = "1.5em";
+        btn.addEventListener('click', function () {
+            createCSV(myData);
+        });
+        function createCSV(data) {
+            console.log(data);
+            let holder = "";
+            let file;
+            let filename = "test.txt";
+            let properties = {type:"text/plain"}
+            data.forEach(function (item) {
+                holder += item.join() + "\n";
+            })
+            file = new File([holder],filename,properties);
+            let link = document.createElement("a");
+            let url = URL.createObjectURL(file);
+            link.setAttribute("href",url);
+            link.setAttribute("download",filename);
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log(holder);
+        }
+
+    </script>
+</body>
+
+</html>
