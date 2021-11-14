@@ -13,7 +13,7 @@
     <button>Download CSV File</button>
     <script>
         let myData = [
-            ["Title", "Content"],
+            ["Title", "Content,comma"],
             ["Row1", "HTML"],
             ["Row2", "CSS"],
             ["Row3", "JavaScript"],
@@ -33,22 +33,21 @@
             let holder = "";
             let file;
             let filename = "test.txt";
-            let properties = {type:"text/plain"}
+            let properties = { type: "text/plain" }
             data.forEach(function (item) {
                 holder += item.join() + "\n";
-            })
-            file = new File([holder],filename,properties);
+            });
+            file = new File([holder], filename, properties);
             let link = document.createElement("a");
             let url = URL.createObjectURL(file);
-            link.setAttribute("href",url);
-            link.setAttribute("download",filename);
+            link.setAttribute('href',url);
+            link.setAttribute('download',filename);
             link.style.visibility = "hidden";
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
             console.log(holder);
         }
-
     </script>
 </body>
 
