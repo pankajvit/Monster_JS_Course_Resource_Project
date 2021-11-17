@@ -15,7 +15,6 @@ const getSuggestions = () => {
     xhr.onreadystatechange = () => {
       if(xhr.readyState === XMLHttpRequest.DONE)  {
           renderResponse(xhr.response);
-        //   console.log(xhr.response);
       }
     }
     xhr.open('GET',endpoint);
